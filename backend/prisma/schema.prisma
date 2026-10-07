@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  // Nullable because Google Sign-In users won't have a password
+  password  String?  
+  googleId  String?  @unique
+  // If a user's resources get reported too many times, this becomes true
+  suspended Boolean  @default(false) 
+  
+  resources     Resource[]
+  ratings       ResourceRating[]
+  reports       Report[]
+  hostedSessions LiveSession[]
+
+  createdAt DateTime @default(now())
+}
+
+model University {
+  id      Int      @id @default(autoincrement())
+  name    String   @unique // e.g., "SRM KTR", "ANNA UNIV"
+  courses Course[]
+}
+
+model Course {
+  id           Int        @id @default(autoincrement())
+  name         String     // e.g., "B.Tech CSE"
+  universityId Int
+  university   University @relation(fields: [universityId], references: [id], onDelete: Cascade)
+  subjects     Subject[]
+
+  @@unique([name, universityId])
+}
+
+model Subject {
+  id       Int    @id @default(autoincrement())
+  name     String // e.g., "Data Structures"
+  code     String // e.g., "21CSC201J"
+  semester String // e.g., "3rd sem"
+  
+  courseId Int
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  resources Resource[]
+  sessions  LiveSession[]
+}
+
+model Resource {
+  id          Int      @id @default(autoincrement())
+  title       String   // Name of the file/notes
+  fileUrl     String   // Path to the uploaded file (e.g., local uploads folder)
+  hidden      Boolean  @default(false) // Triggered if reports >= 3
+
+  subjectId   Int
+  subject     Subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  
+  uploaderId  Int
+  uploader    User     @relation(fields: [uploaderId], references: [id], onDelete: Cascade)
+  
+  ratings     ResourceRating[]
+  reports     Report[]
+
+  createdAt   DateTime @default(now())
+}
+
+model ResourceRating {
+  id         Int      @id @default(autoincrement())
+  isHelpful  Boolean  // true = Upvote, false = Downvote
+  
+  resourceId Int
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // A user can only rate a specific resource once
+  @@unique([resourceId, userId]) 
+}
+
+model Report {
+  id         Int      @id @default(autoincrement())
+  reason     String
+  
+  resourceId Int
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+  
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // A user can only report a specific resource once
+  @@unique([resourceId, userId])
+}
+
+model LiveSession {
+  id        Int      @id @default(autoincrement())
+  topic     String
+  date      String   // e.g., "2023-11-25"
+  time      String   // e.g., "18:00"
+  meetLink  String   // Static Google Meet link pasted by the host
+
+  subjectId Int
+  subject   Subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  hostId    Int
+  host      User     @relation(fields: [hostId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,300 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================================
+   THEME DEFINITIONS & COLOR SYSTEM
+   ======================================================== */
+
+:root,
+[data-theme="light"],
+html.theme-light,
+body.theme-light {
+  --color-paper: 250 248 243;
+  --color-card: 255 255 255;
+  --color-ink: 24 33 47;
+  --color-chalk: 47 82 51;
+  --color-chalk-light: 62 107 68;
+  --color-chalk-dark: 33 59 38;
+  --color-highlight: 217 119 6;
+  --color-stamp: 185 28 28;
+  --color-rule: 226 220 205;
+
+  --bg-paper: #FAF8F3;
+  --bg-card: #FFFFFF;
+  --text-ink: #18212F;
+  --text-muted: #5A6982;
+  --accent-chalk: #2F5233;
+  --border-rule: #E2DCCD;
+}
+
+html.dark,
+body.dark,
+[data-theme="dark"] {
+  --color-paper: 11 15 25 !important;
+  --color-card: 22 31 48 !important;
+  --color-ink: 248 250 252 !important;
+  --color-chalk: 34 197 94 !important;
+  --color-chalk-light: 74 222 128 !important;
+  --color-chalk-dark: 22 163 74 !important;
+  --color-highlight: 251 191 36 !important;
+  --color-stamp: 248 113 113 !important;
+  --color-rule: 45 59 85 !important;
+
+  --bg-paper: #0B0F19 !important;
+  --bg-card: #161F30 !important;
+  --text-ink: #F8FAFC !important;
+  --text-muted: #94A3B8 !important;
+  --accent-chalk: #22C55E !important;
+  --border-rule: #2D3B55 !important;
+}
+
+html.theme-ocean,
+body.theme-ocean,
+[data-theme="ocean"] {
+  --color-paper: 8 20 38 !important;
+  --color-card: 16 36 68 !important;
+  --color-ink: 241 245 249 !important;
+  --color-chalk: 56 189 248 !important;
+  --color-chalk-light: 125 211 252 !important;
+  --color-chalk-dark: 2 132 199 !important;
+  --color-highlight: 251 191 36 !important;
+  --color-stamp: 251 113 133 !important;
+  --color-rule: 30 58 95 !important;
+
+  --bg-paper: #081426 !important;
+  --bg-card: #102444 !important;
+  --text-ink: #F1F5F9 !important;
+  --text-muted: #93C5FD !important;
+  --accent-chalk: #38BDF8 !important;
+  --border-rule: #1E3A5F !important;
+}
+
+html.theme-sunset,
+body.theme-sunset,
+[data-theme="sunset"] {
+  --color-paper: 32 14 29 !important;
+  --color-card: 56 25 52 !important;
+  --color-ink: 255 241 242 !important;
+  --color-chalk: 251 146 60 !important;
+  --color-chalk-light: 253 186 116 !important;
+  --color-chalk-dark: 234 88 12 !important;
+  --color-highlight: 250 204 21 !important;
+  --color-stamp: 248 113 113 !important;
+  --color-rule: 92 42 74 !important;
+
+  --bg-paper: #200E1D !important;
+  --bg-card: #381934 !important;
+  --text-ink: #FFF1F2 !important;
+  --text-muted: #FDA4AF !important;
+  --accent-chalk: #FB923C !important;
+  --border-rule: #5C2A4A !important;
+}
+
+/* ========================================================
+   GLOBAL DOM & TYPOGRAPHY ENFORCEMENT
+   ======================================================== */
+
+html, body {
+  background-color: var(--bg-paper) !important;
+  color: var(--text-ink) !important;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+#root, #root > div {
+  background-color: var(--bg-paper) !important;
+  color: var(--text-ink) !important;
+}
+
+nav {
+  background-color: var(--bg-paper) !important;
+  border-color: var(--border-rule) !important;
+  color: var(--text-ink) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-ink) !important;
+  font-family: "Source Serif 4", Georgia, serif;
+}
+
+a {
+  color: var(--accent-chalk) !important;
+  transition: color 0.15s ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-chalk);
+  outline-offset: 2px;
+}
+
+/* ========================================================
+   CRITICAL FONT & TEXT CONTRAST OVERRIDES
+   Ensures text-ink, text-chalk, and all subheadings/subtexts
+   are brightly visible in dark, ocean, and sunset themes
+   ======================================================== */
+
+.text-ink {
+  color: var(--text-ink) !important;
+}
+
+.text-ink\/70 {
+  color: var(--text-ink) !important;
+  opacity: 0.85 !important;
+}
+
+.text-ink\/60 {
+  color: var(--text-ink) !important;
+  opacity: 0.8 !important;
+}
+
+.text-ink\/50 {
+  color: var(--text-ink) !important;
+  opacity: 0.75 !important;
+}
+
+.text-ink\/40 {
+  color: var(--text-ink) !important;
+  opacity: 0.65 !important;
+}
+
+.text-chalk {
+  color: var(--accent-chalk) !important;
+}
+
+.text-highlight {
+  color: rgb(var(--color-highlight)) !important;
+}
+
+.text-stamp {
+  color: rgb(var(--color-stamp)) !important;
+}
+
+.bg-chalk {
+  background-color: var(--accent-chalk) !important;
+}
+
+.border-chalk {
+  border-color: var(--accent-chalk) !important;
+}
+
+.border-rule {
+  border-color: var(--border-rule) !important;
+}
+
+/* Card contents - ensure all text inside cards inherits high-contrast text color */
+.card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-rule) !important;
+  box-shadow: 2px 2px 0 0 var(--border-rule) !important;
+  color: var(--text-ink) !important;
+  border-radius: 0.125rem;
+  transition: all 0.2s ease;
+}
+
+.card p {
+  color: var(--text-ink);
+}
+
+.card p.text-ink\/60,
+.card p.text-ink\/50,
+.card p.text-ink\/40 {
+  color: var(--text-ink) !important;
+}
+
+.card .text-chalk {
+  color: var(--accent-chalk) !important;
+}
+
+/* Solid Opaque Settings Menu - NO GLASS DESIGN */
+.settings-menu {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-rule) !important;
+  color: var(--text-ink) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4) !important;
+  opacity: 1 !important;
+}
+
+.settings-menu * {
+  color: var(--text-ink);
+}
+
+.btn-primary {
+  background-color: var(--accent-chalk) !important;
+  color: var(--bg-paper) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.125rem;
+  padding: 0.625rem 1.25rem;
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-rule) !important;
+  color: var(--text-ink) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.125rem;
+  padding: 0.625rem 1.25rem;
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-chalk) !important;
+  opacity: 0.9;
+}
+
+.input-field {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-rule) !important;
+  color: var(--text-ink) !important;
+  width: 100%;
+  border-radius: 0.125rem;
+  padding: 0.5rem 0.75rem;
+  font-family: Inter, sans-serif;
+  transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+}
+
+.input-field::placeholder {
+  color: var(--text-ink) !important;
+  opacity: 0.45;
+}
+
+.input-field:focus {
+  border-color: var(--accent-chalk) !important;
+  outline: none;
+}
+
+.eyebrow {
+  color: var(--accent-chalk) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.tag-chip {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-rule) !important;
+  color: var(--text-ink) !important;
+  display: inline-block;
+  border-radius: 0.125rem;
+  padding: 0.125rem 0.5rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+}

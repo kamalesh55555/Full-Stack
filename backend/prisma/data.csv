@@ -1,0 +1,25 @@
+University,Programme,Branch,Semester,SubjectCode,SubjectName
+SRM KTR,B.Tech,CSE,1,21LEH102T,Chinese
+SRM KTR,B.Tech,CSE,1,21LEH103T,French
+SRM KTR,B.Tech,CSE,1,21LEH104T,German
+SRM KTR,B.Tech,CSE,1,21MAB101T,Calculus and Linear Algebra
+SRM KTR,B.Tech,CSE,1,21CSS101J,Programming for Problem Solving
+SRM KTR,B.Tech,CSE,2,21LEH101T,Communicative English
+SRM KTR,B.Tech,CSE,2,21CSC101T,Object Oriented Design and Programming
+SRM KTR,B.Tech,CSE,3,21CSC201J,Data Structures and Algorithms
+SRM KTR,B.Tech,CSE,3,21CSC202J,Operating Systems
+SRM KTR,B.Tech,CSE,4,21CSC205P,Database Management Systems
+SRM KTR,B.Tech,CSE,4,21CSC206T,Artificial Intelligence
+SRM KTR,B.Tech,CSE,5,21CSC301T,Formal Language and Automata
+SRM KTR,B.Tech,CSE,5,21CSC302J,Computer Networks
+SRM KTR,B.Tech,CSE,6,21CSC303J,Software Engineering and Project Management
+SRM NCR,B.Tech,CSE,3,21AS301,Engineering Mathematics-III
+SRM NCR,B.Tech,CSE,3,21CS2001,Data Structures Using C
+SRM NCR,MCA,Computer Science,1,21MCA101,Design and Analysis of Algorithm
+ANNA UNIV,B.E.,CSE/ECE/MECH,1,MA3151,Matrices and Calculus
+ANNA UNIV,B.E.,CSE/ECE/MECH,1,PH3151,Engineering Physics
+ANNA UNIV,B.E.,CSE,2,CS3251,Programming in C
+ANNA UNIV,B.E.,CSE,3,CS3351,Digital Principles and Computer Organization
+ANNA UNIV,B.E.,CSE,3,CS3352,Foundations of Data Science
+ANNA UNIV,B.E.,CSE,3,CS3391,Object Oriented Programming
+ANNA UNIV,B.E.,CSE,3,CS3301,Data Structures
