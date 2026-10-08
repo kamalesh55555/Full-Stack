@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 import { useSettings } from '../context/SettingsContext';
 import { GraduationCap, BookOpen, Users, Star } from 'lucide-react';
@@ -13,7 +14,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/academy/universities')
+    axios.get(`${API_URL}/academy/universities`)
       .then(res => { setUniversities(res.data); setLoading(false); })
       .catch(err => { console.error(err); setLoading(false); });
   }, []);

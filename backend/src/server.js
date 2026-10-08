@@ -25,6 +25,22 @@ app.use('/api/academy', academyRoutes);
 app.use('/api/resources', resourceRoutes);
 app.use('/api/sessions', sessionRoutes);
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'Welcome to the PeerLearn API!',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      auth: '/api/auth',
+      academy: '/api/academy',
+      resources: '/api/resources',
+      sessions: '/api/sessions'
+    }
+  });
+});
+
 // Simple health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'PeerLearn API is running!' });

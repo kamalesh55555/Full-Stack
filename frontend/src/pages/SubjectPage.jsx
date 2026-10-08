@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { ChevronRight, ThumbsUp, ThumbsDown, Flag, Upload, Video, ExternalLink, Clock, Users } from 'lucide-react';
 import Loader from '../components/Loader';
 import { useSettings } from '../context/SettingsContext';
+import { SERVER_URL } from '../utils/api';
 
 const SubjectPage = () => {
   const { id } = useParams();
@@ -206,7 +207,7 @@ const SubjectPage = () => {
                   </div>
                   <div className="flex items-center gap-3">
                     <a
-                      href={`http://localhost:5000${r.fileUrl}`}
+                      href={`${SERVER_URL}${r.fileUrl}`}
                       target="_blank" rel="noopener noreferrer"
                       download={r.title}
                       className="btn-secondary text-xs py-1.5 px-3"
